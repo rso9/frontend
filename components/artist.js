@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import {
   Card,
   Icon
@@ -7,7 +8,7 @@ import {
 const extra = (
   <a>
     <Icon name='caret square right' />
-    Listen
+    <Link><a href="/song">Listen</a></Link>
   </a>
 )
 
