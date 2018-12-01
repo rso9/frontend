@@ -8,7 +8,7 @@ import {
 const extra = (
   <a>
     <Icon name='caret square right' />
-    <Link><a href="/song">Listen</a></Link>
+    <Link href="/song"><a>Listen</a></Link>
   </a>
 )
 
