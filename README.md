@@ -1,4 +1,4 @@
-# Frontend
+# Frontend [![Build Status](https://travis-ci.org/rso9/frontend.svg?branch=master)](https://travis-ci.org/rso9/frontend)
 
 This is the code for the microservice that features the web application for listening to music, fetched from our streaming service backend.
 You can find development guidelines and tips (for create-next-app and Next.js) below.
