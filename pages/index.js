@@ -9,11 +9,33 @@ import {
   Card
 } from 'semantic-ui-react'
 
-const CATALOG_API_URL = 'http://35.204.191.75' // TODO: add ServiceDiscovery
+const CATALOG_API_URL = 'http://localhost:8080/v1/' // TODO: add ServiceDiscovery
 
 class Home extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      songIds: []
+    }
+  }
+
+  componentDidMount() {
+    fetch(CATALOG_API_URL + 'song')
+      .then(res => res.json())
+      .then(response => {
+        this.setState({
+          songIds: response.map(e => e.id)
+        })
+      })
+  }
+
   render() {
+    const songCards = this.state.songIds.map(songId => 
+      <SongCard id={songId} key={songId}></SongCard>
+    )
+    
     return (
       <div>
         <Head title="RSOPlayer | Welcome" />
@@ -29,10 +51,7 @@ class Home extends React.Component {
     
               <Container>
                 <Card.Group itemsPerRow='4'>
-                  <SongCard id={1}/>
-                  <SongCard id={2}/>
-                  <SongCard id={3} />
-                  <SongCard id={4} />
+                  { songCards }
                 </Card.Group>
               </Container>
           </Segment>

@@ -5,6 +5,7 @@ import {
   Icon
 } from 'semantic-ui-react'
 
+const CATALOG_API_URL = 'http://localhost:8080/v1/' // TODO: add ServiceDiscovery
 
 class SongCardComponent extends React.Component {
   constructor(props) {
@@ -14,7 +15,8 @@ class SongCardComponent extends React.Component {
       songName: 'The Wicker Man', // TODO: when this is setup with AJAX change this to a placeholder
       backgroundPictureURL: 'https://via.placeholder.com/500x500.png?text=rso9player%20has%20no%20image',
       isLoaded: false,
-      artistDescription: 'No description found.'
+      artistDescription: 'No description found.',
+      firstArtist: null
     }
   }
 
@@ -25,18 +27,16 @@ class SongCardComponent extends React.Component {
   }
 
   componentDidMount() {
-    // TODO: sync this with catalog
-
-    // fetch('catalog/songs/' + this.props.id)
-    //   .then(res => res.json())
-    //   .then(result => {
-    //     this.setState({
-    //       artistName: result.artist,
-    //       songName: result.name
-    //     })
-    //   })
-
-    fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' + this.state.artistName)
+    fetch(CATALOG_API_URL + 'song/' + this.props.id)
+      .then(res => res.json())
+      .then(result => {
+        this.setState({
+          artistName: result.artists.reduce((all, curr) => all + curr.name + ", ", "").slice(0, -2),
+          firstArtist: result.artists[0].name,
+          songName: result.songName
+        })
+        return fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' + this.state.firstArtist)
+      })
       .then(res => res.json())
       .then(result => {
         if (result.type === 'standard') {
