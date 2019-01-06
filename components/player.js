@@ -1,5 +1,7 @@
 import React from 'react'
 
+import getConfig from 'next/config'
+
 class Player extends React.Component {
 
   constructor(props) {
@@ -10,7 +12,7 @@ class Player extends React.Component {
 
     return (
       <div>
-        <audio src={this.props.songUrl ? this.props.songUrl : "http://localhost:8080/song/x_files_x_files_theme.mp3"} controls autoPlay/>
+        <audio src={this.props.songUrl} controls autoPlay/>
       </div>
     )
   }

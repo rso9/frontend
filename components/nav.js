@@ -26,12 +26,6 @@ const Nav = () => (
           Account
         </Menu.Item>
       </Link>
-      <Menu.Menu position='right'>
-        <Menu.Item>
-          <Icon name='caret square right' size='large'></Icon>
-          <Link href='/song'><a>Now playing: Vedno si sanjala njega (Fredi Miler)</a></Link>
-        </Menu.Item>
-      </Menu.Menu>
     </Container>
   </Menu>
 )

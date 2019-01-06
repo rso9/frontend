@@ -1,12 +1,15 @@
-const withCSS = require('@zeit/next-css')
+const nextRuntimeDotenv = require('next-runtime-dotenv')
 
-module.exports =  {
-  webpack: config => {
-    // Fixes npm packages that depend on `fs` module
-    config.node = {
-      fs: 'empty'
-    }
+const withConfig = nextRuntimeDotenv({
+  public: [
+    'CATALOG_API_URL',
+    'MEDIA_STORAGE_API_URL'
+  ],
 
-    return config
-  }
-}
+  server: [
+    'CATALOG_API_URL',
+    'MEDIA_STORAGE_API_URL'
+  ]
+})
+
+module.exports = withConfig()

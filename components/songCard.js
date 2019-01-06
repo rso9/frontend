@@ -5,7 +5,11 @@ import {
   Icon
 } from 'semantic-ui-react'
 
-const CATALOG_API_URL = 'http://localhost:8080/v1/' // TODO: add ServiceDiscovery
+import getConfig from 'next/config'
+
+const {
+  publicRuntimeConfig: {CATALOG_API_URL}
+} = getConfig()
 
 class SongCardComponent extends React.Component {
   constructor(props) {

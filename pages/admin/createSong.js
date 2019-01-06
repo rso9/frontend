@@ -12,12 +12,11 @@ import {
   Segment
 } from 'semantic-ui-react'
 
-const CATALOG_API_URL = process.env.CATALOG_API_URL || 'http://35.204.59.130/v1/' || 'http://localhost:8080/v1/' // TODO: add ServiceDiscovery
-console.log("catalog: " + CATALOG_API_URL)
+import getConfig from 'next/config'
 
-const MEDIA_STORAGE_API_URL = process.env.MEDIA_STORAGE_API_URL || 'http://35.204.171.250' || 'http://localhost:1234/' // TODO: add ServiceDiscovery
-console.log("media: " + MEDIA_STORAGE_API_URL)
-
+const {
+  publicRuntimeConfig: {CATALOG_API_URL, MEDIA_STORAGE_API_URL}
+} = getConfig()
 class CreateSong extends React.Component {
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
@@ -64,7 +63,7 @@ class CreateSong extends React.Component {
     formData.append('title', this.state.title);
     formData.append('song', this.state.file);
 
-    fetch(MEDIA_STORAGE_API_URL, {
+    fetch(MEDIA_STORAGE_API_URL + 'song', {
       method: 'post',
       body: formData,
     })

@@ -11,8 +11,11 @@ import {
   List
 } from 'semantic-ui-react'
 
-const CATALOG_API_URL = process.env.CATALOG_API_URL || 'http://35.204.59.130/v1/' || 'http://localhost:8080/v1/' // TODO: add ServiceDiscovery
-console.log("catalog: " + CATALOG_API_URL)
+import getConfig from 'next/config'
+
+const {
+  publicRuntimeConfig: {CATALOG_API_URL, MEDIA_STORAGE_API_URL}
+} = getConfig()
 
 class Song extends React.Component {
 
@@ -39,10 +42,11 @@ class Song extends React.Component {
       .then(response => {
         const artists = response.artists.reduce((all, curr) => all + curr.name + ", ", "").slice(0, -2)
         const firstArtist = response.artists[0].name
+        console.log(response)
         this.setState({
           artists: artists,
           songName: response.songName,
-          songUrl: response.url ? response.url : this.state.songUrl
+          songUrl: response.songUrl ? MEDIA_STORAGE_API_URL + response.songUrl : MEDIA_STORAGE_API_URL + 'song/x_files_x_files_theme.mp3'
         })
         return fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' + firstArtist)
       })

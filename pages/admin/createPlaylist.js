@@ -15,10 +15,11 @@ import {
 } from 'semantic-ui-react'
 import Axios from 'axios';
 
-const CATALOG_API_URL = process.env.CATALOG_API_URL || 'http://35.204.59.130/v1/' || 'http://localhost:8080/v1/' // TODO: add ServiceDiscovery
-console.log(CATALOG_API_URL)
-// use an inbetween api that resolves etcd
-// or just hardcode
+import getConfig from 'next/config'
+
+const {
+  publicRuntimeConfig: {CATALOG_API_URL}
+} = getConfig()
 
 class CreatePlaylist extends React.Component {
 
