@@ -11,7 +11,8 @@ import {
   List
 } from 'semantic-ui-react'
 
-const CATALOG_API_URL = 'http://localhost:8080/v1/' // TODO: add ServiceDiscovery
+const CATALOG_API_URL = process.env.CATALOG_API_URL || 'http://35.204.59.130/v1/' || 'http://localhost:8080/v1/' // TODO: add ServiceDiscovery
+console.log("catalog: " + CATALOG_API_URL)
 
 class Song extends React.Component {
 

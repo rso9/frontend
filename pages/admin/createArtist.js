@@ -14,8 +14,8 @@ import {
 } from 'semantic-ui-react'
 import Axios from 'axios';
 
-const CATALOG_API_URL = process.env.CATALOG_API_URL || 'http://localhost:8080/v1/' // TODO: add ServiceDiscovery
-
+const CATALOG_API_URL = process.env.CATALOG_API_URL || 'http://35.204.59.130/v1/' || 'http://localhost:8080/v1/' // TODO: add ServiceDiscovery
+console.log(CATALOG_API_URL)
 class CreateArtist extends React.Component {
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })

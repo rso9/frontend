@@ -12,7 +12,11 @@ import {
   Segment
 } from 'semantic-ui-react'
 
-const CATALOG_API_URL = process.env.CATALOG_API_URL || 'http://localhost:8080/v1/' // TODO: add ServiceDiscovery
+const CATALOG_API_URL = process.env.CATALOG_API_URL || 'http://35.204.59.130/v1/' || 'http://localhost:8080/v1/' // TODO: add ServiceDiscovery
+console.log("catalog: " + CATALOG_API_URL)
+
+const MEDIA_STORAGE_API_URL = process.env.MEDIA_STORAGE_API_URL || 'http://35.204.171.250' || 'http://localhost:1234/' // TODO: add ServiceDiscovery
+console.log("media: " + MEDIA_STORAGE_API_URL)
 
 class CreateSong extends React.Component {
 
@@ -60,7 +64,7 @@ class CreateSong extends React.Component {
     formData.append('title', this.state.title);
     formData.append('song', this.state.file);
 
-    fetch('http://localhost:1234/song', {
+    fetch(MEDIA_STORAGE_API_URL, {
       method: 'post',
       body: formData,
     })
