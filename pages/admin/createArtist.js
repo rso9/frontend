@@ -37,8 +37,7 @@ class CreateArtist extends React.Component {
     axios.post(CATALOG_API_URL + 'artist', {
       name: this.state.name,
       firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      artistName: this.state.name
+      lastName: this.state.lastName
     })
   }
 
