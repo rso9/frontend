@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from '../../components/head'
 import axios from 'axios'
+import path from 'path'
 
 import {
   Container,
@@ -14,7 +15,10 @@ import {
 } from 'semantic-ui-react'
 import Axios from 'axios';
 
-const CATALOG_API_URL = 'http://localhost:8080/v1/' // TODO: add ServiceDiscovery
+const CATALOG_API_URL = process.env.CATALOG_API_URL || 'http://localhost:8080/v1/' // TODO: add ServiceDiscovery
+
+// use an inbetween api that resolves etcd
+// or just hardcode
 
 class CreatePlaylist extends React.Component {
 
@@ -29,6 +33,7 @@ class CreatePlaylist extends React.Component {
   }
 
   submitForm() {
+
     axios.post(CATALOG_API_URL + 'playlist', {
       playlistName: this.state.name,
     })

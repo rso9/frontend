@@ -12,7 +12,7 @@ import {
   Segment
 } from 'semantic-ui-react'
 
-const CATALOG_API_URL = 'http://localhost:8080/v1/' // TODO: add ServiceDiscovery
+const CATALOG_API_URL = process.env.CATALOG_API_URL || 'http://localhost:8080/v1/' // TODO: add ServiceDiscovery
 
 class CreateSong extends React.Component {
 
